@@ -22,12 +22,14 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/total_price_cart_text_view"
         android:id="@+id/cart_list_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_margin="10dp" />
+        android:layout_below="@id/total_price_cart_text_view"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/msg1"
@@ -45,14 +47,14 @@
 
 
     <Button
+        android:id="@+id/next_cartList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-       android:layout_marginHorizontal="10dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="5dp"
         android:backgroundTint="#C62828"
         android:text="Proceed to next"
-        android:id="@+id/next_cartList"
 
         android:textColor="@android:color/white" />
 

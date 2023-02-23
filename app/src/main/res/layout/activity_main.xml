@@ -4,65 +4,112 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/welcome"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+    <TextView
+        android:id="@+id/TITLE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/app_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/applogo" />
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        android:text="Welcome To Plantree"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/app_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/app_slogon"
+        app:cardCornerRadius="100dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/plantree" />
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/app_slogon"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-       android:layout_centerHorizontal="true"
-        android:layout_below="@+id/app_logo"
+        android:layout_above="@+id/main_join_now_btn"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-
-        android:text="Find,Discover,Choose and Buy Online"
+        android:layout_marginBottom="35dp"
+        android:gravity="center"
+        android:text="Plantree! Grow With Love"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        android:textStyle="bold|italic"
-        />
+        android:textColor="#20530E"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
 
     <Button
         android:id="@+id/main_login_now_btn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginHorizontal="15dp"
-        android:background="@drawable/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/or"
+        android:layout_marginHorizontal="15dp"
+        android:background="@drawable/buttons"
         android:padding="20dp"
-        android:textAllCaps="false"
-        android:textSize="18sp"
         android:text="Already have an account? Log in"
+        android:textAllCaps="false"
         android:textColor="@android:color/white"
+        android:textSize="18sp"
 
         />
 
     <Button
         android:id="@+id/main_join_now_btn"
-      android:layout_above="@+id/main_login_now_btn"
-        android:layout_marginBottom="5dp"
-        android:layout_marginHorizontal="15dp"
-        android:background="@drawable/input_design"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/main_login_now_btn"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/input_design"
         android:padding="20dp"
-        android:textAllCaps="false"
-        android:textSize="18sp"
         android:text="Join Now"
-        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:textColor="#1C480C"
+        android:textSize="18sp"
 
         />
 
 
+    <TextView
+        android:id="@+id/or"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/guestLogin"
+        android:gravity="center"
+        android:text="Or"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/guestLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Continue As Guest"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold">
+
+    </TextView>
 
 
 </RelativeLayout>

@@ -8,7 +8,6 @@
     android:layout_marginTop="20dp"
     app:cardCornerRadius="10dp"
     android:padding="5dp"
-    app:cardBackgroundColor="@color/colorPrimary"
     android:elevation="15dp">
 
     <RelativeLayout
@@ -19,10 +18,12 @@
             android:id="@+id/product_name_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/product_image_rv"
+            android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="Product Name"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -30,10 +31,9 @@
             android:id="@+id/product_image_rv"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_below="@id/product_name_rv"
-            android:src="@drawable/tshirts"
             android:layout_marginTop="2dp"
             android:scaleType="fitCenter"
+            android:src="@drawable/tshirts"
 
             />
 
@@ -41,12 +41,12 @@
             android:id="@+id/product_price_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/product_image_rv"
+            android:layout_below="@id/product_name_rv"
             android:layout_marginVertical="3dp"
-            android:gravity="center"
-            android:padding="5dp"
+            android:gravity="start"
+            android:padding="10dp"
             android:text="Product Price"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -56,10 +56,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/product_price_rv"
             android:layout_marginVertical="3dp"
-            android:gravity="center"
-            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:padding="10dp"
             android:text="Product Description"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="15sp" />
 
     </RelativeLayout>

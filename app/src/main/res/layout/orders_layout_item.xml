@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardBackgroundColor="@color/status"
     android:elevation="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -66,12 +66,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/order_date_time_admin_new"
-            android:background="@drawable/buttons"
-            android:text="Show this order products"
-            android:backgroundTint="#fff"
-            android:textColor="@color/colorPrimary"
             android:layout_marginTop="20dp"
-            />
+            android:background="@drawable/buttons"
+            android:backgroundTint="#fff"
+            android:text="Show this order products"
+            android:textColor="@color/status" />
 
     </RelativeLayout>
 

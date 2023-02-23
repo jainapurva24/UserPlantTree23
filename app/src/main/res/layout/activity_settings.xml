@@ -10,7 +10,7 @@
         android:id="@+id/app_bar_layout_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:background="@color/status">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_setting"
@@ -39,11 +39,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
                 android:text="Update"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:layout_marginEnd="10dp"
 
                 />
         </RelativeLayout>
@@ -61,18 +61,19 @@
 
 
         />
+
     <TextView
         android:id="@+id/setting_change_profile_image_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/setting_profile_image"
         android:layout_centerHorizontal="true"
-        android:text="Update image"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="Update image"
         android:textColor="@android:color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginEnd="10dp"
 
         />
 
@@ -106,19 +107,39 @@
         android:background="@drawable/input_design"
         android:layout_below="@id/setting_edit_name"
         />
+
     <Button
         android:id="@+id/set_decurity_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="15dp"
-        android:stateListAnimator="@null"
+        android:layout_below="@id/setting_edit_adress"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/buttons"
+        android:padding="10dp"
+        android:stateListAnimator="@null"
         android:text="Set security question"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:layout_below="@id/setting_edit_adress"
-        />
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/Become_SellerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/set_decurity_question"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/buttons"
+        android:padding="10dp"
+        android:stateListAnimator="@null"
+        android:text="Become Seller"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
 
 
 </RelativeLayout>
