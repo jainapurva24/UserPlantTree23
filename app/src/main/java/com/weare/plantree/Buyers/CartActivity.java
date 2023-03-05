@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,10 +29,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.weare.plantree.LoginActivity;
 import com.weare.plantree.Model.CartModel;
 import com.weare.plantree.Model.Users;
 import com.weare.plantree.Prevalent.Prevalent;
 import com.weare.plantree.R;
+import com.weare.plantree.RegisterActivity;
 import com.weare.plantree.ViewHolder.CartViewHolder;
 
 import io.paperdb.Paper;
@@ -70,7 +73,28 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (curentUser == null){
-                    Toast.makeText(CartActivity.this, "Please Register Or Login", Toast.LENGTH_SHORT).show();
+                    Dialog dialog = new Dialog(CartActivity.this);
+                    dialog.setContentView(R.layout.loginorregisterdialog);
+
+                    Button login = dialog.findViewById(R.id.gotologin);
+                    Button register = dialog.findViewById(R.id.gotoregister);
+                    Button cancel = dialog.findViewById(R.id.cancel);
+                    dialog.show();
+
+                    login.setOnClickListener(vi->{
+                        startActivity(new Intent(CartActivity.this, LoginActivity.class));
+                        finish();
+
+                    });
+
+                    register.setOnClickListener(vi->{
+                        startActivity(new Intent(CartActivity.this, RegisterActivity.class));
+                        finish();
+                    });
+
+                    cancel.setOnClickListener(vi -> {
+                        dialog.dismiss();
+                    });
                 }
                 else {
                     if (firsttime) {

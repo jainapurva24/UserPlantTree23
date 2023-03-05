@@ -10,7 +10,7 @@
         android:id="@+id/username_orders_admin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/status"
         android:gravity="center"
         android:paddingEnd="30dp"
         android:text="Products"

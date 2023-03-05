@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -35,6 +36,7 @@ import com.weare.plantree.Prevalent.Prevalent;
 import com.weare.plantree.R;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
+import com.weare.plantree.RegisterActivity;
 
 import java.util.HashMap;
 
@@ -50,6 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
     private String myUri="";
     private StorageReference profilePicreference;
     private String checker="";
+    Users curentUser;
     private StorageTask uploadTask;
     private Button setSerurityQn,Become_SellerBtn;
 
@@ -68,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         //
         profilePicreference= FirebaseStorage.getInstance().getReference();
-
+        curentUser=Paper.book().read(Prevalent.currentOnlineUser);
         //paper
         Paper.init(this);
 
@@ -116,73 +119,141 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         Become_SellerBtn.setOnClickListener(view->{
-            Intent intent=new Intent(SettingsActivity.this, AdminCategoryActivity.class);
-            startActivity(intent);
-            finish();
+            if(curentUser == null) {
+                Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.loginorregisterdialog);
+
+                Button login = dialog.findViewById(R.id.gotologin);
+                Button register = dialog.findViewById(R.id.gotoregister);
+                Button cancel = dialog.findViewById(R.id.cancel);
+                dialog.show();
+
+                login.setOnClickListener(v->{
+                    startActivity(new Intent(SettingsActivity.this,LoginActivity.class));
+                    finish();
+                });
+
+                register.setOnClickListener(v->{
+                    startActivity(new Intent(SettingsActivity.this, RegisterActivity.class));
+                    finish();
+                });
+
+                cancel.setOnClickListener(v -> {
+                    dialog.dismiss();
+                });
+
+
+            }
+            else {
+                Intent intent = new Intent(SettingsActivity.this, AdminCategoryActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
     }
 
     private void UpdateOnlyUserInfo()
     {
-
-        if (checker=="")
-        {
-            if (checkEditText())
-            {
-                final ProgressDialog progressDialog=new ProgressDialog(this);
-                progressDialog.setTitle("Updating profile ");
-                progressDialog.setMessage("please wait, while updating profile");
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
-                Users users=Paper.book().read(Prevalent.currentOnlineUser);
+        if (curentUser != null) {
+            if (checker == "") {
+                if (checkEditText()) {
+                    final ProgressDialog progressDialog = new ProgressDialog(this);
+                    progressDialog.setTitle("Updating profile ");
+                    progressDialog.setMessage("please wait, while updating profile");
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.show();
+                    Users users = Paper.book().read(Prevalent.currentOnlineUser);
 
 
-                DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Users").child(users.getPhone());
-                HashMap<String,Object> userHashMap=new HashMap<>();
-                userHashMap.put("name",nameEditText.getText().toString());
-                userHashMap.put("adress",adressEditText.getText().toString());
-                userHashMap.put("phoneOrder",phoneEditText.getText().toString());
-                reference.updateChildren(userHashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                        {
-                            progressDialog.dismiss();
-                            Toast.makeText(SettingsActivity.this, "Profile updated succesfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
-                            finish();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(users.getPhone());
+                    HashMap<String, Object> userHashMap = new HashMap<>();
+                    userHashMap.put("name", nameEditText.getText().toString());
+                    userHashMap.put("adress", adressEditText.getText().toString());
+                    userHashMap.put("phoneOrder", phoneEditText.getText().toString());
+                    reference.updateChildren(userHashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                progressDialog.dismiss();
+                                Toast.makeText(SettingsActivity.this, "Profile updated succesfully", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
+                                finish();
 
-                        }
-                        else
-                        {
-                            progressDialog.dismiss();
-                            Toast.makeText(SettingsActivity.this, "Something went wrong:: try again", Toast.LENGTH_SHORT).show();
-                            //startActivity(new Intent(SettingsActivity.this,HomeActivity.class));
-                            // finish();
+                            } else {
+                                progressDialog.dismiss();
+                                Toast.makeText(SettingsActivity.this, "Something went wrong:: try again", Toast.LENGTH_SHORT).show();
+                                //startActivity(new Intent(SettingsActivity.this,HomeActivity.class));
+                                // finish();
+
+                            }
 
                         }
+                    });
 
-                    }
-                });
-
+                }
             }
-        }
 
+        }
+        else {
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.loginorregisterdialog);
+
+            Button login = dialog.findViewById(R.id.gotologin);
+            Button register = dialog.findViewById(R.id.gotoregister);
+            Button cancel = dialog.findViewById(R.id.cancel);
+            dialog.show();
+
+            login.setOnClickListener(v->{
+                startActivity(new Intent(SettingsActivity.this,LoginActivity.class));
+                finish();
+            });
+
+            register.setOnClickListener(v->{
+                startActivity(new Intent(SettingsActivity.this, RegisterActivity.class));
+                finish();
+            });
+
+            cancel.setOnClickListener(v -> {
+                dialog.dismiss();
+            });
+        }
     }
 
 
 
     private void UserInfoSave()
     {
+        if (curentUser != null) {
+            if (checkEditText()) {
+                if (checker.equals("clicked")) {
+                    UploadImage();
+                }
 
-        if (checkEditText())
-        {
-            if (checker.equals("clicked"))
-            {
-                UploadImage();
             }
+        }
+        else {
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.loginorregisterdialog);
 
+            Button login = dialog.findViewById(R.id.gotologin);
+            Button register = dialog.findViewById(R.id.gotoregister);
+            Button cancel = dialog.findViewById(R.id.cancel);
+            dialog.show();
+
+            login.setOnClickListener(v->{
+                startActivity(new Intent(SettingsActivity.this,LoginActivity.class));
+                finish();
+            });
+
+            register.setOnClickListener(v->{
+                startActivity(new Intent(SettingsActivity.this, RegisterActivity.class));
+                finish();
+            });
+
+            cancel.setOnClickListener(v -> {
+                dialog.dismiss();
+            });
         }
 
     }

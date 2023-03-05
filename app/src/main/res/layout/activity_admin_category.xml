@@ -168,7 +168,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="27dp"
-                android:text="Plants"
+                android:text="Fertilizer"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
@@ -186,14 +186,14 @@
                 android:id="@+id/potsImg"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:src="@drawable/spiderplant" />
+                android:src="@drawable/pot" />
 
             <TextView
                 android:id="@+id/pots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="27dp"
-                android:text="Plants"
+                android:text="Pots"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"

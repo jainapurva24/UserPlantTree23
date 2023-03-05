@@ -48,4 +48,36 @@ public class ProductsModal {
     public String getTime() {
         return time;
     }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 }

@@ -3,6 +3,7 @@ package com.weare.plantree.Buyers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,11 +21,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.weare.plantree.LoginActivity;
 import com.weare.plantree.Model.ProductsModal;
 import com.weare.plantree.Model.Users;
 import com.weare.plantree.Prevalent.Prevalent;
 import com.weare.plantree.R;
 import com.squareup.picasso.Picasso;
+import com.weare.plantree.RegisterActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -82,7 +85,28 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private void addToCartList() {
         if (currentUser == null){
-            Toast.makeText(this, "Please Register OR login", Toast.LENGTH_SHORT).show();
+
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.loginorregisterdialog);
+
+            Button login = dialog.findViewById(R.id.gotologin);
+            Button register = dialog.findViewById(R.id.gotoregister);
+            Button cancel = dialog.findViewById(R.id.cancel);
+            dialog.show();
+
+            login.setOnClickListener(v->{
+                startActivity(new Intent(ProductDetailsActivity.this, LoginActivity.class));
+                finish();
+            });
+
+            register.setOnClickListener(v->{
+                startActivity(new Intent(ProductDetailsActivity.this, RegisterActivity.class));
+                finish();
+            });
+
+            cancel.setOnClickListener(v -> {
+                dialog.dismiss();
+            });
         }
         else {
             String saveCurrentTime, saveCurrentDate;
@@ -153,9 +177,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     name=modal.getPname();
                     price=modal.getPrice();
                     description=modal.getDescription();
-                    nameTextView.setText(modal.getPname());
+                    nameTextView.setText("Product Name"+modal.getPname());
                     descriptionTextView.setText(modal.getDescription());
-                    priceTextView.setText("Price:: $"+modal.getPrice());
+                    priceTextView.setText("Price:: Rs."+modal.getPrice());
 
                 }
                 else

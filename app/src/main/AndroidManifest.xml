@@ -14,36 +14,69 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".Buyers.SeedsActivity"
+            android:exported="false"
+            android:theme="@style/Status1">
+
+        </activity>
+
+        <activity android:name=".Buyers.FertilizerActivity"
+            android:exported="false"
+            android:theme="@style/Status1">
+
+        </activity>
+
+        <activity android:name=".Buyers.PotsActivity"
+            android:exported="false"
+            android:theme="@style/Status1">
+
+        </activity>
+
+        <activity
+            android:name=".Buyers.PlantsActivity"
+            android:exported="false"
+            android:theme="@style/Status1"/>
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/StatusSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Buyers.ResetPasswordActivity" />
-        <activity android:name=".Admin.AdminMaintainProductsActivity" />
-        <activity android:name=".Buyers.SearchProductActivity" />
-        <activity android:name=".Admin.AdminUserProductActivity" />
-        <activity android:name=".Admin.AdminNewOrdersActivity" />
-        <activity android:name=".Buyers.ConfirmFinalOrderActivity" />
-        <activity android:name=".Buyers.CartActivity" />
-        <activity android:name=".Buyers.ProductDetailsActivity" />
-        <activity android:name=".Buyers.SettingsActivity" />
+        <activity android:name=".Admin.AdminMaintainProductsActivity"
+            android:theme="@style/Status2"/>
+        <activity android:name=".Buyers.SearchProductActivity"
+            android:theme="@style/Status1"/>
+        <activity android:name=".Admin.AdminUserProductActivity"
+            android:theme="@style/Status1"/>
+        <activity android:name=".Admin.AdminNewOrdersActivity"
+            android:theme="@style/Status1"/>
+        <activity android:name=".Buyers.ConfirmFinalOrderActivity"
+            android:theme="@style/Status2"/>
+        <activity android:name=".Buyers.CartActivity"
+            android:theme="@style/Status1"/>
+        <activity android:name=".Buyers.ProductDetailsActivity"
+            android:theme="@style/Status2"/>
+        <activity android:name=".Buyers.SettingsActivity"
+            android:theme="@style/Status1"/>
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Admin.AdminCategoryActivity" />
-        <activity android:name=".Admin.AdminAddNewProductActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+            android:theme="@style/Status1" />
+        <activity android:name=".Admin.AdminCategoryActivity"
+            android:theme="@style/Status2"/>
+        <activity android:name=".Admin.AdminAddNewProductActivity"
+            android:theme="@style/Status2"/>
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/Status2"/>
+        <activity android:name=".LoginActivity"
+            android:theme="@style/Status2"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/Status2"></activity>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

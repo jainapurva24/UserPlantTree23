@@ -7,15 +7,15 @@
     tools:context=".Buyers.CartActivity">
 
     <TextView
+        android:id="@+id/total_price_cart_text_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textSize="20sp"
-        android:background="@color/colorPrimary"
-        android:id="@+id/total_price_cart_text_view"
+        android:background="@color/status"
         android:gravity="center"
-       android:paddingEnd="30dp"
-
+        android:paddingEnd="30dp"
         android:textColor="@android:color/white"
+
+        android:textSize="20sp"
 
         android:textStyle="bold"
 
