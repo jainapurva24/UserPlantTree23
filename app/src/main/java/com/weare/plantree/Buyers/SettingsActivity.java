@@ -69,7 +69,7 @@ public class SettingsActivity extends AppCompatActivity {
         changeImageTextView = findViewById(R.id.setting_change_profile_image_text);
         Become_SellerBtn = findViewById(R.id.Become_SellerBtn);
 
-        //
+
         profilePicreference= FirebaseStorage.getInstance().getReference();
         curentUser=Paper.book().read(Prevalent.currentOnlineUser);
         //paper
@@ -109,12 +109,40 @@ public class SettingsActivity extends AppCompatActivity {
 
         //sec qn
         setSerurityQn=findViewById(R.id.set_decurity_question);
+
         setSerurityQn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SettingsActivity.this, ResetPasswordActivity.class);
-                intent.putExtra("check","setting");
-                startActivity(intent);
+                if(curentUser == null) {
+                    Dialog dialog = new Dialog(SettingsActivity.this);
+                    dialog.setContentView(R.layout.loginorregisterdialog);
+
+                    Button login = dialog.findViewById(R.id.gotologin);
+                    Button register = dialog.findViewById(R.id.gotoregister);
+                    Button cancel = dialog.findViewById(R.id.cancel);
+                    dialog.show();
+
+                    login.setOnClickListener(vi->{
+                        startActivity(new Intent(SettingsActivity.this,LoginActivity.class));
+                        finish();
+                    });
+
+                    register.setOnClickListener(vi->{
+                        startActivity(new Intent(SettingsActivity.this, RegisterActivity.class));
+                        finish();
+                    });
+
+                    cancel.setOnClickListener(vi -> {
+                        dialog.dismiss();
+                    });
+
+
+                }
+                else {
+                    Intent intent = new Intent(SettingsActivity.this, ResetPasswordActivity.class);
+                    intent.putExtra("check", "setting");
+                    startActivity(intent);
+                }
             }
         });
 

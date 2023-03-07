@@ -177,9 +177,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     name=modal.getPname();
                     price=modal.getPrice();
                     description=modal.getDescription();
-                    nameTextView.setText("Product Name"+modal.getPname());
+                    nameTextView.setText(modal.getPname());
                     descriptionTextView.setText(modal.getDescription());
-                    priceTextView.setText("Price:: Rs."+modal.getPrice());
+                    priceTextView.setText("Price in Rs."+modal.getPrice());
 
                 }
                 else

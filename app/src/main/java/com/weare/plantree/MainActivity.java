@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("Type","LoginUser");
                 editor.apply();
                 startActivity(new Intent(MainActivity.this,LoginActivity.class));
-                finish();
+
             }
         });
         signupNow.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("Type","LoginUser");
                 editor.apply();
                 startActivity(new Intent(MainActivity.this,RegisterActivity.class));
-                finish();
             }
         });
 

@@ -49,6 +49,8 @@ public class PotsActivity extends AppCompatActivity {
         search = findViewById(R.id.search_pots);
         search_btn = findViewById(R.id.search_pots_btn);
 
+        getData();
+
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -81,21 +83,20 @@ public class PotsActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        Query query = mReference.orderByChild("category").equalTo("Pots");
+    public void getData(){
+        Query query = mReference.orderByChild("category").equalTo("Plants");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()){
+                    String pid = data.child("pid").getValue().toString();
                     String name = data.child("pname").getValue().toString();
                     String descr = data.child("description").getValue().toString();
                     String img = data.child("image").getValue().toString();
                     String price = data.child("price").getValue().toString();
 
                     ProductsModal modal = new ProductsModal();
+                    modal.setPid(pid);
                     modal.setPname(name);
                     modal.setPrice(price);
                     modal.setDescription(descr);
@@ -111,7 +112,7 @@ public class PotsActivity extends AppCompatActivity {
                 editor.putString("List",json);
                 editor.apply();
 
-                adapter = new ProductAdapter(list, PotsActivity.this);
+                adapter = new ProductAdapter(list,PotsActivity.this);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(PotsActivity.this));
                 mRecyclerView.setAdapter(adapter);
             }
@@ -122,4 +123,5 @@ public class PotsActivity extends AppCompatActivity {
             }
         });
     }
+
 }

@@ -1,13 +1,17 @@
 package com.weare.plantree.Admin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 import com.weare.plantree.Model.ProductsModal;
 import com.weare.plantree.R;
 
@@ -34,6 +39,8 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
     private ProductsModal modal;
     private StorageReference imageref;
     private String imageUrl;
+    ImageView img;
+    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         priceEditText=findViewById(R.id.product_price_detail_maintain);
         applyButton=findViewById(R.id.apply_btn_maintain);
         deleteBtn=findViewById(R.id.delete_product);
+        img = findViewById(R.id.imageView_detail_maintain);
         imageref= FirebaseStorage.getInstance().getReference();
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +132,26 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
 
     }
 
+//    private void openGallery() {
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        intent.setType("image/*");
+//        startActivityForResult(intent, 3450);
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 3450 && resultCode == RESULT_OK) {
+//            if (data != null) {
+//                imageUri = data.getData();
+//                img.setImageURI(imageUri);
+//
+//            }
+//        }
+//    }
+
+
     private void displayProductInfo()
     {
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -137,6 +165,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                         descriptionEditText.setText(modal.getDescription());
                         priceEditText.setText(modal.getPrice());
                         imageUrl=modal.getImage();
+                        Picasso.get().load(imageUrl).into(img);
                     }
                 }
             }

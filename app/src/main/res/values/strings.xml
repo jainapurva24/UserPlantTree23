@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mero Mall</string>
+    <string name="app_name">Plantree</string>
     <string name="log_in_as_admin">Login as admin</string>
     <string name="login_text">\"Login \"</string>
     <string name="enter_phone_number_text">please enter phone number</string>

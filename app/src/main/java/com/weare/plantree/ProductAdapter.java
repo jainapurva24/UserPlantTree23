@@ -1,6 +1,7 @@
 package com.weare.plantree;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.audiofx.LoudnessEnhancer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.weare.plantree.Buyers.ProductDetailsActivity;
+import com.weare.plantree.Buyers.SearchProductActivity;
 import com.weare.plantree.Interface.onItemClickListner;
 import com.weare.plantree.Model.ProductsModal;
 
@@ -45,9 +48,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         ProductsModal modal = list.get(position);
         holder.productTitle.setText(modal.getPname());
         holder.productDescription.setText(modal.getDescription());
-        holder.productPrice.setText(String.format("Price $%s ", modal.getPrice()));
+        holder.productPrice.setText(String.format("Price in Rs.%s ", modal.getPrice()));
 
         Picasso.get().load(modal.getImage()).into(holder.productImage);
+
+        holder.itemView.setOnClickListener(view->{
+            String id = modal.getPid();
+            Intent intent = new Intent(context, ProductDetailsActivity.class);
+            intent.putExtra("pid", id);
+            context.startActivity(intent);
+        });
     }
 
     @Override

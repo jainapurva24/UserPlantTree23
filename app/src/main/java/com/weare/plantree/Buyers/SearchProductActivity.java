@@ -17,6 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.weare.plantree.Admin.AdminMaintainProductsActivity;
 import com.weare.plantree.Model.ProductsModal;
 import com.weare.plantree.R;
 import com.weare.plantree.ViewHolder.ProductViewHolder;
@@ -28,6 +29,7 @@ public class SearchProductActivity extends AppCompatActivity {
     private EditText searchEditText;
     private RecyclerView recyclerViewSearch;
     private String searchInput;
+    private String typeOfUser="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,14 @@ public class SearchProductActivity extends AppCompatActivity {
                 onStart();
             }
         });
+
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        if (bundle!=null)
+        {
+            typeOfUser=bundle.getString("Admin");
+
+        }
 
     }
 
@@ -67,10 +77,21 @@ public class SearchProductActivity extends AppCompatActivity {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String id=model.getPid();
-                        Intent intent=new Intent(SearchProductActivity.this, ProductDetailsActivity.class);
-                        intent.putExtra("pid",id);
-                        startActivity(intent);
+                        if (typeOfUser.equals("Admin"))
+                        {
+
+                            String id = model.getPid();
+                            Intent intent = new Intent(SearchProductActivity.this, AdminMaintainProductsActivity.class);
+                            intent.putExtra("pid", id);
+                            startActivity(intent);
+                        }
+                        else
+                            {
+                            String id = model.getPid();
+                            Intent intent = new Intent(SearchProductActivity.this, ProductDetailsActivity.class);
+                            intent.putExtra("pid", id);
+                            startActivity(intent);
+                            }
                     }
                 });
             }

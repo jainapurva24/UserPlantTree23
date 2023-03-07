@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.weare.plantree.Buyers.SearchProductActivity;
 import com.weare.plantree.HomeActivity;
 import com.weare.plantree.MainActivity;
 import com.weare.plantree.R;
@@ -75,7 +76,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         maintain_products_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(AdminCategoryActivity.this, HomeActivity.class);
+                Intent intent=new Intent(AdminCategoryActivity.this, SearchProductActivity.class);
                 intent.putExtra("Admin","Admin");
                 startActivity(intent);
 
