@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                             Toast.makeText(MainActivity.this, "you are  already logged in ..please wait ", Toast.LENGTH_SHORT).show();
                             loadingbar.dismiss();
-                            Intent intent=new Intent(MainActivity.this, HomeActivity.class);
+                            Intent intent=new Intent(MainActivity.this, TermsActivity.class);
                             startActivity(intent);
                             finish();
                         }

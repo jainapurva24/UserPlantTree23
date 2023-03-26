@@ -13,33 +13,30 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Buyers.SeedsActivity"
+        <activity
+            android:name=".TermsActivity"
             android:exported="false"
-            android:theme="@style/Status1">
-
-        </activity>
-
-        <activity android:name=".Buyers.FertilizerActivity"
+            android:theme="@style/Status2"/>
+        <activity
+            android:name=".Buyers.SeedsActivity"
             android:exported="false"
-            android:theme="@style/Status1">
-
-        </activity>
-
-        <activity android:name=".Buyers.PotsActivity"
+            android:theme="@style/Status1"></activity>
+        <activity
+            android:name=".Buyers.FertilizerActivity"
             android:exported="false"
-            android:theme="@style/Status1">
-
-        </activity>
-
+            android:theme="@style/Status1"></activity>
+        <activity
+            android:name=".Buyers.PotsActivity"
+            android:exported="false"
+            android:theme="@style/Status1"></activity>
         <activity
             android:name=".Buyers.PlantsActivity"
             android:exported="false"
-            android:theme="@style/Status1"/>
+            android:theme="@style/Status1" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/StatusSplash">
+            android:theme="@style/Status2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,36 +44,49 @@
             </intent-filter>
         </activity>
         <activity android:name=".Buyers.ResetPasswordActivity" />
-        <activity android:name=".Admin.AdminMaintainProductsActivity"
-            android:theme="@style/Status2"/>
-        <activity android:name=".Buyers.SearchProductActivity"
-            android:theme="@style/Status1"/>
-        <activity android:name=".Admin.AdminUserProductActivity"
-            android:theme="@style/Status1"/>
-        <activity android:name=".Admin.AdminNewOrdersActivity"
-            android:theme="@style/Status1"/>
-        <activity android:name=".Buyers.ConfirmFinalOrderActivity"
-            android:theme="@style/Status2"/>
-        <activity android:name=".Buyers.CartActivity"
-            android:theme="@style/Status1"/>
-        <activity android:name=".Buyers.ProductDetailsActivity"
-            android:theme="@style/Status2"/>
-        <activity android:name=".Buyers.SettingsActivity"
-            android:theme="@style/Status1"/>
+        <activity
+            android:name=".Admin.AdminMaintainProductsActivity"
+            android:theme="@style/Status2" />
+        <activity
+            android:name=".Buyers.SearchProductActivity"
+            android:theme="@style/Status1" />
+        <activity
+            android:name=".Admin.AdminUserProductActivity"
+            android:theme="@style/Status1" />
+        <activity
+            android:name=".Admin.AdminNewOrdersActivity"
+            android:theme="@style/Status1" />
+        <activity
+            android:name=".Buyers.ConfirmFinalOrderActivity"
+            android:theme="@style/Status2" />
+        <activity
+            android:name=".Buyers.CartActivity"
+            android:theme="@style/Status1" />
+        <activity
+            android:name=".Buyers.ProductDetailsActivity"
+            android:theme="@style/Status2" />
+        <activity
+            android:name=".Buyers.SettingsActivity"
+            android:theme="@style/Status1" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/Status1" />
-        <activity android:name=".Admin.AdminCategoryActivity"
-            android:theme="@style/Status2"/>
-        <activity android:name=".Admin.AdminAddNewProductActivity"
-            android:theme="@style/Status2"/>
-        <activity android:name=".RegisterActivity"
-            android:theme="@style/Status2"/>
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Status2"/>
-        <activity android:name=".MainActivity"
-            android:theme="@style/Status2"></activity>
+        <activity
+            android:name=".Admin.AdminCategoryActivity"
+            android:theme="@style/Status2" />
+        <activity
+            android:name=".Admin.AdminAddNewProductActivity"
+            android:theme="@style/Status2" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/Status2" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Status2" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Status2" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

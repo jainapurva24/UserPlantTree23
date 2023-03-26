@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/drawable/btn_drw.xml" value="0.215" />
+        <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/drawable/btn_drw2.xml" value="0.215" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/drawable/btndrawable.xml" value="0.215" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/drawable/buttons.xml" value="0.2075" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/drawable/carddrawable.xml" value="0.215" />
@@ -32,6 +34,7 @@
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/activity_seeds.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/activity_settings.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/activity_terms.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/app_bar_home.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/cart_list_item.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/content_home.xml" value="0.24739583333333334" />
@@ -43,7 +46,9 @@
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/nav_header_home.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/orders_layout_item.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/product_item_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/layout/termslayout.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/menu/activity_home_drawer.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/BHAVIK SUTHAR/OneDrive/Documents/MY PROGRAMS/Projects/Mero_Mall_Complete_eCommerce_Android_Application/app/src/main/res/menu/home.xml" value="0.24739583333333334" />
       </map>
     </option>
   </component>

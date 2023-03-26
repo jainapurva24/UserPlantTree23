@@ -1,18 +1,22 @@
 package com.weare.plantree;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
@@ -260,10 +264,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     finish();
                     break;
 
+                case R.id.nav_terms:
+                    showtermsDialog();
+                    break;
             }
 
         }
         return false;
+    }
+
+    private void showtermsDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.termslayout);
+
+        dialog.show();
+        drawer.closeDrawer(GravityCompat.START);
+
+        Button btn = dialog.findViewById(R.id.ok);
+
+        btn.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
     }
 
     @Override

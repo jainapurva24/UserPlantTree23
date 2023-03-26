@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                           {
                               Paper.book().write(Prevalent.currentOnlineUser,users);
                               //  Paper.book().write(Prevalent.currentOnlineUser,users);
-                              Intent intent=new Intent(LoginActivity.this, HomeActivity.class);
+                              Intent intent=new Intent(LoginActivity.this, TermsActivity.class);
                               startActivity(intent);
                               finish();
                           }
