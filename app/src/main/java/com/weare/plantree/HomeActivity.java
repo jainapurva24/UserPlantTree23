@@ -267,6 +267,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.nav_terms:
                     showtermsDialog();
                     break;
+
+                case R.id.aboutus:
+                    startActivity(new Intent(HomeActivity.this,AboutActivity.class));
+
             }
 
         }

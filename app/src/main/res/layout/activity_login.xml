@@ -146,8 +146,8 @@
         android:text="I am an admin"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
-        android:visibility="gone"
         android:textStyle="bold"
+        android:visibility="gone"
 
         />
 

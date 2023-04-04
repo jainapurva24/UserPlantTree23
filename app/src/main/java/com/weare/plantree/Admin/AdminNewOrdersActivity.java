@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,16 +20,29 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.weare.plantree.Buyers.SeedsActivity;
 import com.weare.plantree.Model.OrderModal;
+import com.weare.plantree.Model.ProductsModal;
+import com.weare.plantree.Model.Users;
+import com.weare.plantree.Prevalent.Prevalent;
+import com.weare.plantree.ProductAdapter;
 import com.weare.plantree.R;
 import com.weare.plantree.ViewHolder.AdminNewProductViewHolder;
+
+import io.paperdb.Paper;
 
 public class AdminNewOrdersActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private DatabaseReference mReference;
+    private String uid="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +51,51 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
         mRecyclerView=findViewById(R.id.admin_new_product_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
+        mReference= FirebaseDatabase.getInstance().getReference().child("Orders");
+        uid=getIntent().getStringExtra("uid");
+        Paper.init(this);
 
-      //  onStart();
 
-        loadData();
+        onStart();
+
+//        loadData();
+
+    }
 
 
+    private void loadData() {
 
 
     }
 
-    private void loadData() {
-        mReference= FirebaseDatabase.getInstance().getReference().child("Orders");
+    private void RemoveOrder(String uid) {
+        mReference.child(uid).removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                        {
+                            Toast.makeText(AdminNewOrdersActivity.this, "Removed::from list", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(AdminNewOrdersActivity.this, "Error: Something went wrong", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        final Users users=Paper.book().read(Prevalent.currentOnlineUser);
+        mReference= FirebaseDatabase.getInstance().getReference().child("Orders").child(users.getPhone());
         FirebaseRecyclerOptions<OrderModal> options=new FirebaseRecyclerOptions.Builder<OrderModal>().setQuery(mReference,OrderModal.class).build();
 
         FirebaseRecyclerAdapter<OrderModal, AdminNewProductViewHolder> adapter=new FirebaseRecyclerAdapter<OrderModal, AdminNewProductViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull AdminNewProductViewHolder holder, final int position, @NonNull final OrderModal model)
+            protected void onBindViewHolder(@NonNull AdminNewProductViewHolder holder, @SuppressLint("RecyclerView") final int position, @NonNull final OrderModal model)
             {
                 holder.nameTextView.setText("To :"+model.getName());
                 holder.priceTextView.setText("Total amount :"+model.getTotalAmount());
@@ -108,29 +151,5 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(adapter);
         adapter.startListening();
-    }
-
-    private void RemoveOrder(String uid) {
-        mReference.child(uid).removeValue()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                        {
-                            Toast.makeText(AdminNewOrdersActivity.this, "Removed::from list", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(AdminNewOrdersActivity.this, "Error: Something went wrong", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
     }
 }

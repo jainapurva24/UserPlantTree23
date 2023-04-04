@@ -84,7 +84,7 @@ public class SeedsActivity extends AppCompatActivity {
     }
 
     public void getData(){
-        Query query = mReference.orderByChild("category").equalTo("Plants");
+        Query query = mReference.orderByChild("category").equalTo("Seeds");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

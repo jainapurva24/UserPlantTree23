@@ -27,9 +27,10 @@ import java.util.HashMap;
 import io.paperdb.Paper;
 
 public class ConfirmFinalOrderActivity extends AppCompatActivity {
-    private EditText phoneEditText,nameEditText,adressEditText,cityEditText;
+    private EditText phoneEditText,nameEditText,adressEditText,cityEditText,email;
     private Button confirmButton;
     int totalprice;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         adressEditText=findViewById(R.id.adress_edit_confirm);
         cityEditText=findViewById(R.id.city_edit_confirm);
         confirmButton=findViewById(R.id.confirm_button_confirm);
+        email = findViewById(R.id.email);
         Paper.init(this);
 
         totalprice=getIntent().getIntExtra("total",0);
@@ -61,58 +63,16 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
     private void confirmOrder()
     {
-        String saveCurrentTime,saveCurrentDate;
-        Calendar calendarForDate=Calendar.getInstance();
-        SimpleDateFormat currentDate=new SimpleDateFormat("MMM dd,yyyy" );
-        saveCurrentDate=currentDate.format(calendarForDate.getTime());
+        Intent intent = new Intent(ConfirmFinalOrderActivity.this,PaymentActivity.class);
+        intent.putExtra("total",totalprice);
+        intent.putExtra("name",nameEditText.getText().toString());
+        intent.putExtra("phone",nameEditText.getText().toString());
+        intent.putExtra("address",nameEditText.getText().toString());
+        intent.putExtra("city",cityEditText.getText().toString());
+        intent.putExtra("email",email.getText().toString());
+        startActivity(intent);
 
-        Calendar calendarForTime=Calendar.getInstance();
-        SimpleDateFormat currentTime=new SimpleDateFormat("HH:mm:ss a" );
-        saveCurrentTime=currentTime.format(calendarForTime.getTime());
-        final Users users=Paper.book().read(Prevalent.currentOnlineUser);
 
-        final DatabaseReference reference= FirebaseDatabase.getInstance().getReference()
-                .child("Orders")
-                .child(users.getPhone());
-
-        final HashMap<String,Object> orderFinalHashMap=new HashMap<>();
-        orderFinalHashMap.put("totalAmount",String.valueOf(totalprice));
-        orderFinalHashMap.put("name",nameEditText.getText().toString());
-        orderFinalHashMap.put("phone",phoneEditText.getText().toString());
-        //  productHashMap.put("description",description);
-        orderFinalHashMap.put("adress",adressEditText.getText().toString());
-        orderFinalHashMap.put("city",cityEditText.getText().toString());
-        orderFinalHashMap.put("date",saveCurrentDate);
-        orderFinalHashMap.put("time",saveCurrentTime);
-        orderFinalHashMap.put("state","not shipped");
-        reference.updateChildren(orderFinalHashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                {
-                    DatabaseReference removeRef=FirebaseDatabase.getInstance().getReference().child("Cart List").child("User View")
-                            .child(users.getPhone())
-                            .child("Products");
-                           removeRef .removeValue()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(ConfirmFinalOrderActivity.this, "Your final order has been confiremed", Toast.LENGTH_SHORT).show();
-                                        Intent intent=new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                }
-                            });
-                }
-                else
-                {
-                    Toast.makeText(ConfirmFinalOrderActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private boolean checkEditText() {
@@ -133,6 +93,11 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         else   if (TextUtils.isEmpty(cityEditText.getText().toString()))
         {
             Toast.makeText(this, "enter city", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else   if (TextUtils.isEmpty(email.getText().toString()))
+        {
+            Toast.makeText(this, "enter email", Toast.LENGTH_SHORT).show();
             return false;
         }
         else {

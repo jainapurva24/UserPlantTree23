@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -14,21 +16,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Buyers.PaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".TermsActivity"
             android:exported="false"
-            android:theme="@style/Status2"/>
+            android:theme="@style/Status2" />
         <activity
             android:name=".Buyers.SeedsActivity"
             android:exported="false"
-            android:theme="@style/Status1"></activity>
+            android:theme="@style/Status1" />
         <activity
             android:name=".Buyers.FertilizerActivity"
             android:exported="false"
-            android:theme="@style/Status1"></activity>
+            android:theme="@style/Status1" />
         <activity
             android:name=".Buyers.PotsActivity"
             android:exported="false"
-            android:theme="@style/Status1"></activity>
+            android:theme="@style/Status1" />
         <activity
             android:name=".Buyers.PlantsActivity"
             android:exported="false"

@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             loadingbar.setMessage(getString(R.string.please_wait_text));
             loadingbar.setCanceledOnTouchOutside(false);
             loadingbar.show();
-            AllowAscessToAccount(phone,password);
+            AllowAscessToAccount(phone, password);
         }
 
     }
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "account with this phonr number "+phone+" does not exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "account with this phone number "+phone+" does not exists", Toast.LENGTH_SHORT).show();
                     loadingbar.dismiss();
                 }
             }
