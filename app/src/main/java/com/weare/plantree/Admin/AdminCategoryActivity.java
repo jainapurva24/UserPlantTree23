@@ -1,16 +1,14 @@
 package com.weare.plantree.Admin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.weare.plantree.Buyers.SearchProductActivity;
-import com.weare.plantree.HomeActivity;
-import com.weare.plantree.MainActivity;
 import com.weare.plantree.R;
 
 import java.util.ArrayList;
@@ -57,10 +55,8 @@ public class AdminCategoryActivity extends AppCompatActivity {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(AdminCategoryActivity.this, MainActivity.class);
-             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
                 finish();
+                System.exit(0);
             }
         });
 

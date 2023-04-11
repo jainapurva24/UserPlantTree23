@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +37,9 @@ public class FertilizerActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     ArrayList<ProductsModal> list = new ArrayList<>();
     ProductAdapter adapter;
+    TextView fertTV;
     EditText search;
+    ProgressBar progressBar;
     Button search_btn;
     String input;
     ArrayList<ProductsModal> getList = new ArrayList<>();
@@ -45,11 +50,14 @@ public class FertilizerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fertilizer);
 
         mRecyclerView = findViewById(R.id.fert_recycler_view);
+        progressBar = findViewById(R.id.progress3);
         mReference= FirebaseDatabase.getInstance().getReference().child("Products");
         search = findViewById(R.id.search_fertilizer);
         search_btn = findViewById(R.id.search_fert_btn);
+        fertTV = findViewById(R.id.fertilizerTV);
 
         getData();
+        progressBar.setVisibility(View.VISIBLE);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -88,6 +96,7 @@ public class FertilizerActivity extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                progressBar.setVisibility(View.VISIBLE);
                 for (DataSnapshot data : snapshot.getChildren()){
                     String pid = data.child("pid").getValue().toString();
                     String name = data.child("pname").getValue().toString();
@@ -105,16 +114,23 @@ public class FertilizerActivity extends AppCompatActivity {
                     list.add(modal);
                 }
 
-                SharedPreferences preferences = getSharedPreferences("Search",MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(list);
-                editor.putString("List",json);
-                editor.apply();
+                if (!list.isEmpty()) {
+                    progressBar.setVisibility(View.GONE);
+                    SharedPreferences preferences = getSharedPreferences("Search", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(list);
+                    editor.putString("List", json);
+                    editor.apply();
 
-                adapter = new ProductAdapter(list,FertilizerActivity.this);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(FertilizerActivity.this));
-                mRecyclerView.setAdapter(adapter);
+                    adapter = new ProductAdapter(list, FertilizerActivity.this);
+                    mRecyclerView.setLayoutManager(new LinearLayoutManager(FertilizerActivity.this));
+                    mRecyclerView.setAdapter(adapter);
+                }
+                else {
+                    progressBar.setVisibility(View.GONE);
+                    fertTV.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

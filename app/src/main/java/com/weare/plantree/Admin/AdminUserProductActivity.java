@@ -1,13 +1,13 @@
 package com.weare.plantree.Admin;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,8 +33,6 @@ public class AdminUserProductActivity extends AppCompatActivity {
         productsListRv.setHasFixedSize(true);
         productsListRv.setLayoutManager(new LinearLayoutManager(this));
 
-
-
         loadData();
 
 
@@ -45,7 +43,7 @@ public class AdminUserProductActivity extends AppCompatActivity {
                 .child("Admin View")
                 .child(uid)
                 .child("Products");
-        FirebaseRecyclerOptions<CartModel> options=new FirebaseRecyclerOptions.Builder<CartModel>().setQuery(cartListRef,CartModel.class)
+        FirebaseRecyclerOptions<CartModel> options=new FirebaseRecyclerOptions.Builder<CartModel>().setQuery(cartListRef, CartModel.class)
                 .build();
         FirebaseRecyclerAdapter<CartModel, CartViewHolder> adapter=new FirebaseRecyclerAdapter<CartModel, CartViewHolder>(options) {
             @Override

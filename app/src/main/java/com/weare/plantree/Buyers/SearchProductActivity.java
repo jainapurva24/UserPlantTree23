@@ -1,10 +1,5 @@
 package com.weare.plantree.Buyers;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,15 +8,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.weare.plantree.Admin.AdminMaintainProductsActivity;
 import com.weare.plantree.Model.ProductsModal;
 import com.weare.plantree.R;
 import com.weare.plantree.ViewHolder.ProductViewHolder;
-import com.squareup.picasso.Picasso;
+
 
 public class SearchProductActivity extends AppCompatActivity {
 
@@ -62,18 +64,20 @@ public class SearchProductActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseApp.initializeApp(this);
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Products");
 
         FirebaseRecyclerOptions<ProductsModal> options=new FirebaseRecyclerOptions.Builder<ProductsModal>()
-                .setQuery(reference.orderByChild("pname").startAt(searchInput),ProductsModal.class)
+                .setQuery(reference.orderByChild("pname").startAt(searchInput), ProductsModal.class)
                 .build();
         FirebaseRecyclerAdapter<ProductsModal, ProductViewHolder> adapter=new FirebaseRecyclerAdapter<ProductsModal, ProductViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final ProductsModal model) {
                 holder.productTitle.setText(model.getPname());
                 holder.productDescription.setText(model.getDescription());
-                holder.productPrice.setText(String.format("Price $%s ", model.getPrice()));
-                Picasso.get().load(model.getImage()).into(holder.productImage);
+                holder.productPrice.setText(String.format("Price Rs%s ", model.getPrice()));
+                Glide.with(SearchProductActivity.this).load(model.getImage()).into(holder.productImage);
+//                Picasso.get().load(model.getImage()).into(holder.productImage);
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

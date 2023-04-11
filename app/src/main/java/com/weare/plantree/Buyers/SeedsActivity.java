@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +38,8 @@ public class SeedsActivity extends AppCompatActivity {
     ArrayList<ProductsModal> list = new ArrayList<>();
     ProductAdapter adapter;
     EditText search;
+    TextView seedsTV;
+    ProgressBar progressBar;
     Button search_btn;
     String input;
     ArrayList<ProductsModal> getList = new ArrayList<>();
@@ -47,9 +52,12 @@ public class SeedsActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.seeds_recycler_view);
         mReference= FirebaseDatabase.getInstance().getReference().child("Products");
         search = findViewById(R.id.search_seeds);
+        seedsTV = findViewById(R.id.seedsTV);
+        progressBar = findViewById(R.id.progress2);
         search_btn = findViewById(R.id.search_seeds_btn);
 
         getData();
+        progressBar.setVisibility(View.VISIBLE);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -88,6 +96,7 @@ public class SeedsActivity extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                progressBar.setVisibility(View.VISIBLE);
                 for (DataSnapshot data : snapshot.getChildren()){
                     String pid = data.child("pid").getValue().toString();
                     String name = data.child("pname").getValue().toString();
@@ -105,16 +114,23 @@ public class SeedsActivity extends AppCompatActivity {
                     list.add(modal);
                 }
 
-                SharedPreferences preferences = getSharedPreferences("Search",MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(list);
-                editor.putString("List",json);
-                editor.apply();
+                if (!list.isEmpty()) {
+                    progressBar.setVisibility(View.GONE);
+                    SharedPreferences preferences = getSharedPreferences("Search", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(list);
+                    editor.putString("List", json);
+                    editor.apply();
 
-                adapter = new ProductAdapter(list,SeedsActivity.this);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(SeedsActivity.this));
-                mRecyclerView.setAdapter(adapter);
+                    adapter = new ProductAdapter(list, SeedsActivity.this);
+                    mRecyclerView.setLayoutManager(new LinearLayoutManager(SeedsActivity.this));
+                    mRecyclerView.setAdapter(adapter);
+                }
+                else {
+                    progressBar.setVisibility(View.GONE);
+                    seedsTV.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

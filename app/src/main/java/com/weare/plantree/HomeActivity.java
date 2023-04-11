@@ -245,9 +245,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.nav_cart:
                     startActivity(new Intent(HomeActivity.this, CartActivity.class));
                     break;
-                case R.id.nav_category:
+//                case R.id.nav_category:
 
-                    break;
+//                    break;
                 case R.id.nav_search:
                     startActivity(new Intent(HomeActivity.this, SearchProductActivity.class));
 

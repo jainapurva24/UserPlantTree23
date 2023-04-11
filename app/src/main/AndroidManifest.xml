@@ -15,12 +15,27 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Status2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".AboutActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".Buyers.PaymentActivity"
-            android:exported="false" />
+             />
         <activity
             android:name=".TermsActivity"
             android:exported="false"
@@ -41,62 +56,69 @@
             android:name=".Buyers.PlantsActivity"
             android:exported="false"
             android:theme="@style/Status1" />
-        <activity
-            android:name=".SplashActivity"
-            android:exported="true"
-            android:theme="@style/Status2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Buyers.ResetPasswordActivity" />
+        <activity android:name=".Buyers.ResetPasswordActivity"
+            android:exported="false"/>
         <activity
             android:name=".Admin.AdminMaintainProductsActivity"
+            android:exported="false"
             android:theme="@style/Status2" />
         <activity
             android:name=".Buyers.SearchProductActivity"
+            android:exported="false"
             android:theme="@style/Status1" />
         <activity
             android:name=".Admin.AdminUserProductActivity"
+            android:exported="false"
             android:theme="@style/Status1" />
         <activity
             android:name=".Admin.AdminNewOrdersActivity"
+            android:exported="false"
             android:theme="@style/Status1" />
         <activity
             android:name=".Buyers.ConfirmFinalOrderActivity"
+            android:exported="false"
             android:theme="@style/Status2" />
         <activity
             android:name=".Buyers.CartActivity"
+            android:exported="false"
             android:theme="@style/Status1" />
         <activity
             android:name=".Buyers.ProductDetailsActivity"
+            android:exported="false"
             android:theme="@style/Status2" />
         <activity
             android:name=".Buyers.SettingsActivity"
+            android:exported="false"
             android:theme="@style/Status1" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
+            android:exported="false"
             android:theme="@style/Status1" />
         <activity
             android:name=".Admin.AdminCategoryActivity"
+            android:exported="false"
             android:theme="@style/Status2" />
         <activity
             android:name=".Admin.AdminAddNewProductActivity"
+            android:exported="false"
             android:theme="@style/Status2" />
         <activity
             android:name=".RegisterActivity"
+            android:exported="false"
             android:theme="@style/Status2" />
         <activity
             android:name=".LoginActivity"
+            android:exported="false"
             android:theme="@style/Status2" />
         <activity
             android:name=".MainActivity"
+            android:exported="false"
             android:theme="@style/Status2" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:exported="false"
             android:theme="@style/Base.Theme.AppCompat" />
     </application>
 

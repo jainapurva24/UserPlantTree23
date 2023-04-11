@@ -44,6 +44,28 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/fertilizerTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Fertilizer Data Found"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/status"
+        android:textStyle="italic|bold">
+    </TextView>
+
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress3"
+        android:visibility="gone"
+        android:indeterminateTint="#070707">
+    </ProgressBar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fert_recycler_view"
         android:layout_width="match_parent"
