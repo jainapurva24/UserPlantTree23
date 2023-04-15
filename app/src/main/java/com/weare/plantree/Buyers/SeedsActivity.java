@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,22 +67,32 @@ public class SeedsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                SharedPreferences preferences = getSharedPreferences("Search",MODE_PRIVATE);
+                progressBar.setVisibility(View.VISIBLE);
+                SharedPreferences preferences = getSharedPreferences("Search2",MODE_PRIVATE);
                 Gson gson = new Gson();
-                String listData = preferences.getString("List",null);
+                String listData = preferences.getString("List2",null);
                 Type type = new TypeToken<ArrayList<ProductsModal>>(){}.getType();
                 getList = gson.fromJson(listData,type);
                 ArrayList<ProductsModal> searchList = new ArrayList<>();
 
-                for (ProductsModal modal : getList){
-                    Log.d("TAG",modal.getPname().toString());
-                    if (modal.getPname().contains(s)){
-                        searchList.add(modal);
-                    }
+
+                if (getList == null){
+                    progressBar.setVisibility(View.GONE);
+                    seedsTV.setVisibility(View.VISIBLE);
                 }
-                adapter = new ProductAdapter(searchList,SeedsActivity.this);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(SeedsActivity.this));
-                mRecyclerView.setAdapter(adapter);
+                else {
+                    progressBar.setVisibility(View.GONE);
+                    seedsTV.setVisibility(View.GONE);
+                    for (ProductsModal modal : getList) {
+                        Log.d("TAG", modal.getPname().toString());
+                        if (modal.getPname().contains(s)) {
+                            searchList.add(modal);
+                        }
+                    }
+                    adapter = new ProductAdapter(searchList, SeedsActivity.this);
+                    mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+                    mRecyclerView.setAdapter(adapter);
+                }
             }
 
             @Override
@@ -116,15 +127,15 @@ public class SeedsActivity extends AppCompatActivity {
 
                 if (!list.isEmpty()) {
                     progressBar.setVisibility(View.GONE);
-                    SharedPreferences preferences = getSharedPreferences("Search", MODE_PRIVATE);
+                    SharedPreferences preferences = getSharedPreferences("Search2", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     Gson gson = new Gson();
                     String json = gson.toJson(list);
-                    editor.putString("List", json);
+                    editor.putString("List2", json);
                     editor.apply();
 
                     adapter = new ProductAdapter(list, SeedsActivity.this);
-                    mRecyclerView.setLayoutManager(new LinearLayoutManager(SeedsActivity.this));
+                    mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
                     mRecyclerView.setAdapter(adapter);
                 }
                 else {

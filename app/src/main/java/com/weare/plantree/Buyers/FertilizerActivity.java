@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,22 +67,31 @@ public class FertilizerActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                SharedPreferences preferences = getSharedPreferences("Search",MODE_PRIVATE);
+                progressBar.setVisibility(View.VISIBLE);
+                SharedPreferences preferences = getSharedPreferences("Search3",MODE_PRIVATE);
                 Gson gson = new Gson();
-                String listData = preferences.getString("List",null);
+                String listData = preferences.getString("List3",null);
                 Type type = new TypeToken<ArrayList<ProductsModal>>(){}.getType();
                 getList = gson.fromJson(listData,type);
                 ArrayList<ProductsModal> searchList = new ArrayList<>();
 
-                for (ProductsModal modal : getList){
-                    Log.d("TAG",modal.getPname().toString());
-                    if (modal.getPname().contains(s)){
-                        searchList.add(modal);
-                    }
+                if (getList == null){
+                    fertTV.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }
-                adapter = new ProductAdapter(searchList,FertilizerActivity.this);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(FertilizerActivity.this));
-                mRecyclerView.setAdapter(adapter);
+                else {
+                    fertTV.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
+                    for (ProductsModal modal : getList) {
+                        Log.d("TAG", modal.getPname().toString());
+                        if (modal.getPname().contains(s)) {
+                            searchList.add(modal);
+                        }
+                    }
+                    adapter = new ProductAdapter(searchList, FertilizerActivity.this);
+                    mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+                    mRecyclerView.setAdapter(adapter);
+                }
             }
 
             @Override
@@ -116,15 +126,15 @@ public class FertilizerActivity extends AppCompatActivity {
 
                 if (!list.isEmpty()) {
                     progressBar.setVisibility(View.GONE);
-                    SharedPreferences preferences = getSharedPreferences("Search", MODE_PRIVATE);
+                    SharedPreferences preferences = getSharedPreferences("Search3", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     Gson gson = new Gson();
                     String json = gson.toJson(list);
-                    editor.putString("List", json);
+                    editor.putString("List3", json);
                     editor.apply();
 
                     adapter = new ProductAdapter(list, FertilizerActivity.this);
-                    mRecyclerView.setLayoutManager(new LinearLayoutManager(FertilizerActivity.this));
+                    mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
                     mRecyclerView.setAdapter(adapter);
                 }
                 else {
