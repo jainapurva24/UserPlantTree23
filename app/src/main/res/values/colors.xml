@@ -6,4 +6,6 @@
     <color name="status">#265B0F</color>
     <color name="status2">#FFFFFF</color>
     <color name="splash">#0F2B05</color>
+    <color name="background">#F0F4F3</color>
+    <color name="buttontext">#50C2C9</color>
 </resources>

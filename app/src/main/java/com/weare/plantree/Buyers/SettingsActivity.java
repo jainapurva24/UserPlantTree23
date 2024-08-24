@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,7 +38,6 @@ import com.weare.plantree.Model.Users;
 import com.weare.plantree.Prevalent.Prevalent;
 import com.weare.plantree.R;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
 import com.weare.plantree.RegisterActivity;
 
 import java.util.HashMap;
@@ -101,9 +103,15 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checker="clicked";
-                CropImage.activity(imageUri)
-                        .setAspectRatio(1,1)
-                        .start(SettingsActivity.this);
+//                CropImage.activity(imageUri)
+//                        .setAspectRatio(1,1)
+//                        .start(SettingsActivity.this);
+
+                ImagePicker.with(SettingsActivity.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
             }
         });
 
@@ -390,9 +398,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE&&resultCode==RESULT_OK&&data!=null){
-            CropImage.ActivityResult result=CropImage.getActivityResult(data);
-            imageUri=result.getUri();
+        if (requestCode== Activity.RESULT_OK){
+            imageUri= data.getData();
             mImageView.setImageURI(imageUri);
         }
         else

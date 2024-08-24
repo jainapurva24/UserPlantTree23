@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.weare.plantree">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -15,8 +19,19 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".Onboarding_Screen"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
 
+        <!-- SplashActivity -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -24,102 +39,105 @@
             android:theme="@style/Status2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
+        </activity> <!-- AboutActivity -->
         <activity
             android:name=".AboutActivity"
-            android:exported="false"/>
-
+            android:exported="false" /> <!-- PaymentActivity -->
         <activity
             android:name=".Buyers.PaymentActivity"
-             />
+            android:exported="false" /> <!-- Razorpay CheckoutActivity -->
+        <activity
+            android:name="com.razorpay.CheckoutActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.razorpay.intent.action.PAYMENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- TermsActivity -->
         <activity
             android:name=".TermsActivity"
             android:exported="false"
-            android:theme="@style/Status2" />
+            android:theme="@style/Status2" /> <!-- SeedsActivity -->
         <activity
             android:name=".Buyers.SeedsActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:theme="@style/Status1" /> <!-- FertilizerActivity -->
         <activity
             android:name=".Buyers.FertilizerActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:theme="@style/Status1" /> <!-- PotsActivity -->
         <activity
             android:name=".Buyers.PotsActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:theme="@style/Status1" /> <!-- PlantsActivity -->
         <activity
             android:name=".Buyers.PlantsActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
-
-        <activity android:name=".Buyers.ResetPasswordActivity"
-            android:exported="false"/>
+            android:theme="@style/Status1" /> <!-- ResetPasswordActivity -->
+        <activity
+            android:name=".Buyers.ResetPasswordActivity"
+            android:exported="false" /> <!-- AdminMaintainProductsActivity -->
         <activity
             android:name=".Admin.AdminMaintainProductsActivity"
             android:exported="false"
-            android:theme="@style/Status2" />
+            android:theme="@style/Status2" /> <!-- SearchProductActivity -->
         <activity
             android:name=".Buyers.SearchProductActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:theme="@style/Status1" /> <!-- AdminUserProductActivity -->
         <activity
             android:name=".Admin.AdminUserProductActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:theme="@style/Status1" /> <!-- AdminNewOrdersActivity -->
         <activity
             android:name=".Admin.AdminNewOrdersActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:theme="@style/Status1" /> <!-- ConfirmFinalOrderActivity -->
         <activity
             android:name=".Buyers.ConfirmFinalOrderActivity"
             android:exported="false"
-            android:theme="@style/Status2" />
+            android:theme="@style/Status2" /> <!-- CartActivity -->
         <activity
             android:name=".Buyers.CartActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:theme="@style/Status1" /> <!-- ProductDetailsActivity -->
         <activity
             android:name=".Buyers.ProductDetailsActivity"
             android:exported="false"
-            android:theme="@style/Status2" />
+            android:theme="@style/Status2" /> <!-- SettingsActivity -->
         <activity
             android:name=".Buyers.SettingsActivity"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:theme="@style/Status1" /> <!-- HomeActivity -->
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
             android:exported="false"
-            android:theme="@style/Status1" />
+            android:label="@string/title_activity_home"
+            android:theme="@style/Status1" /> <!-- AdminCategoryActivity -->
         <activity
             android:name=".Admin.AdminCategoryActivity"
             android:exported="false"
-            android:theme="@style/Status2" />
+            android:theme="@style/Status2" /> <!-- AdminAddNewProductActivity -->
         <activity
             android:name=".Admin.AdminAddNewProductActivity"
             android:exported="false"
-            android:theme="@style/Status2" />
+            android:theme="@style/Status2" /> <!-- RegisterActivity -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
-            android:theme="@style/Status2" />
+            android:theme="@style/Status2" /> <!-- LoginActivity -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            android:theme="@style/Status2" />
+            android:theme="@style/Status2" /> <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Status2" />
-        <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:exported="false"
-            android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>

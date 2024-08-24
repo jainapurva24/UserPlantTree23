@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     TextView guestContinue;
     SharedPreferences prefs;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         signupNow=findViewById(R.id.main_join_now_btn);
         guestContinue = findViewById(R.id.guestLogin);
         prefs = getSharedPreferences("TypeUser",MODE_PRIVATE);
+        FirebaseApp.initializeApp(this);
 
         loginNow.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,11 +14,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -65,7 +67,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_home);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Plantree");
         setSupportActionBar(toolbar);
@@ -98,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_app_bar_open_drawer_description, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -241,37 +245,34 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         int id = item.getItemId();
         if (!typeOfUser.equals("Admin")) {
-            switch (id) {
-                case R.id.nav_cart:
-                    startActivity(new Intent(HomeActivity.this, CartActivity.class));
-                    break;
-//                case R.id.nav_category:
-
-//                    break;
-                case R.id.nav_search:
-                    startActivity(new Intent(HomeActivity.this, SearchProductActivity.class));
-
-                    break;
-                case R.id.nav_setting:
-                    startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
-                    break;
-                case R.id.nav_logout:
-                    Paper.book().delete(Prevalent.UserPasswordKey);
-                    Paper.book().delete(Prevalent.UserphoneKey);
-                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
-                    break;
-
-                case R.id.nav_terms:
-                    showtermsDialog();
-                    break;
-
-                case R.id.aboutus:
-                    startActivity(new Intent(HomeActivity.this,AboutActivity.class));
+            if (id == R.id.nav_cart){
+                startActivity(new Intent(HomeActivity.this, CartActivity.class));
 
             }
+            else if (id == R.id.nav_search){
+                startActivity(new Intent(HomeActivity.this, SearchProductActivity.class));
+
+            }
+            else if (id == R.id.nav_setting){
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+
+            }
+            else if (id == R.id.nav_logout){
+                Paper.book().delete(Prevalent.UserPasswordKey);
+                Paper.book().delete(Prevalent.UserphoneKey);
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+            else if (id == R.id.nav_terms){
+                showtermsDialog();
+            }
+            else if (id == R.id.aboutus){
+                startActivity(new Intent(HomeActivity.this,AboutActivity.class));
+
+            }
+
 
         }
         return false;

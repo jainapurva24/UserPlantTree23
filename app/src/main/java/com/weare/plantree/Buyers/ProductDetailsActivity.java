@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+//import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.travijuu.numberpicker.library.NumberPicker;
 import com.weare.plantree.LoginActivity;
 import com.weare.plantree.Model.ProductsModal;
 import com.weare.plantree.Model.Users;
@@ -41,7 +42,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     DatabaseReference mReference;
     private ImageView productImage;
     private TextView nameTextView,descriptionTextView,priceTextView;
-    private ElegantNumberButton mNumberButton;
+    private NumberPicker mNumberButton;
     private Button addToCartBtn;
 
     String name,price,description;
@@ -126,7 +127,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             //  productHashMap.put("description",description);
             productHashMap.put("date", saveCurrentDate);
             productHashMap.put("time", saveCurrentTime);
-            productHashMap.put("quantity", mNumberButton.getNumber());
+            productHashMap.put("quantity", mNumberButton.getValue());
             productHashMap.put("discount", "");
             //productHashMap.put("pid",pid);
 

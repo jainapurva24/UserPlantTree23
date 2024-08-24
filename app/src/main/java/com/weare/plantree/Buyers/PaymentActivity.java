@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
-import com.shreyaspatil.EasyUpiPayment.EasyUpiPayment;
+//import com.shreyaspatil.EasyUpiPayment.EasyUpiPayment;
 import com.weare.plantree.HomeActivity;
 import com.weare.plantree.Model.Users;
 import com.weare.plantree.Prevalent.Prevalent;
